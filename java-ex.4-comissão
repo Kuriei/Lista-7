@@ -1,0 +1,26 @@
+import java.util.*;
+
+public class comissão {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int[] faixas = new int[9]; // 9 faixas de $200 até >= $1000
+
+        System.out.println("Digite o total de vendas de cada vendedor (-1 para sair):");
+        while (true) {
+            double vendas = sc.nextDouble();
+            if (vendas == -1) break;
+            double salario = 200 + vendas * 0.09;
+            int indice = (int)(salario / 100) - 2;
+            if (indice >= 8) indice = 8;
+            faixas[indice]++;
+        }
+
+        for (int i = 0; i < faixas.length; i++) {
+            int min = 200 + i * 100;
+            int max = (i == 8) ? 9999 : min + 99;
+            System.out.printf("$%d - $%d: %d vendedor(es)%n", min, max, faixas[i]);
+        }
+
+        sc.close();
+    }
+}
